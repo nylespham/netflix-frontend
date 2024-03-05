@@ -6,8 +6,9 @@ import ReviewForm from "../form/ReviewForm";
 
 const Review = ({getMovieData, movie, reviews, setReviews}) => {
 
-    let params = useParams();
+   
     const revText = useRef();
+    let params = useParams();
     const movieId = params.movieId;
 
     useEffect(() => {
@@ -18,7 +19,7 @@ const Review = ({getMovieData, movie, reviews, setReviews}) => {
         e.preventDefault();
         const rev = revText.current;
         try {
-            const response = await api.post(`/api/v1/movies/${movieId}/reviews`, {
+            const response = await api.post(`/api/v1/reviews`, {
                 reviewBody: rev.value,
                 imdbId: movieId
             });
@@ -63,7 +64,7 @@ const Review = ({getMovieData, movie, reviews, setReviews}) => {
                                 <>
                                     <Row>
                                         <Col>
-                                            {r.body}
+                                            {review.body}
                                         </Col>
                                     </Row>
                                     <Row>
